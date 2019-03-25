@@ -37,12 +37,12 @@ trait ReportingHttpApi extends TsComponent {
   val tsRepository: TransmittalSheetRepository
 
   val filerListRoute: Route = {
-    path("filers" / IntNumber) { filingYear =>
+    path("filers" / Segment) { year =>
       get {
 
         val futFilerSet =
           tsRepository
-            .getAllSheets(filingYear)
+            .getAllSheets()
             .map(
               sheets =>
                 sheets
